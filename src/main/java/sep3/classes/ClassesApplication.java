@@ -11,12 +11,12 @@ import sep3.classes.socketClient.SocketClientImpl;
 public class ClassesApplication {
 
     public static void main(String[] args) {
-        SocketClient socketClient=new SocketClientImpl();
-        UserService dataModel=new UserServiceImpl(socketClient);
+        //SocketClient socketClient=new SocketClientImpl();
+        //UserService dataModel=new UserServiceImpl(socketClient);
         SpringApplication.run(ClassesApplication.class, args);
 
         //System.out.println(dataModel.addUser(new User()));
-        System.out.println(dataModel.getAllUsers());
+        //System.out.println(dataModel.getAllUsers());
     }
 
 }

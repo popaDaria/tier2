@@ -13,11 +13,46 @@ import java.util.ArrayList;
 @Component
 public class SocketClientImpl implements SocketClient {
 
+    private final static String HOST = "localhost";
+    private final static int PORT = 2910;
+    private ObjectInputStream inFromServer;
+    private ObjectOutputStream outToServer;
+    private Socket socket;
+    private Request receivedMessage;
+
    // private PropertyChangeSupport support;
-
-
     public SocketClientImpl() {
+
       //  support = new PropertyChangeSupport(this);
+    }
+
+    @Override
+    public void startClient() {
+        try {
+            socket = new Socket(HOST, PORT);
+            outToServer = new ObjectOutputStream(socket.getOutputStream());
+            inFromServer = new ObjectInputStream(socket.getInputStream());
+            //new Thread(() -> listenToServer(outToServer, inFromServer)).start();
+
+            SocketClientReceiver clientReceiver = new SocketClientReceiver(this,inFromServer);
+            Thread thread = new Thread(clientReceiver);
+            thread.setDaemon(true);
+            thread.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void disconnect(){
+        try {
+            inFromServer.close();
+            outToServer.close();
+            socket.close();
+            System.out.println("Connection terminated....");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -71,38 +106,23 @@ public class SocketClientImpl implements SocketClient {
         }
     }
 
-    @Override
-    public void startClient() {
-        try {
-            Socket socket = new Socket("localhost", 2910);
-            ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
-        new Thread(() -> listenToServer(outToServer, inFromServer)).start();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setReceivedMessage(Request request){
+        receivedMessage=request;
     }
-
-    private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {
-        try {
-            while (true) {
-                Request request = (Request) inFromServer.readObject();
-               // support.firePropertyChange(request.getType(), null, request.getArg());
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     private Request request(String type,Object arg) throws IOException, ClassNotFoundException {
-        Socket socket = new Socket("localhost", 2910);
-        ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
-        ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
         outToServer.writeObject(new Request(type, arg));
         return (Request) inFromServer.readObject();
     }
 
-
+    /*private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {
+        try {
+            while (true) {
+                Request request = (Request) inFromServer.readObject();
+                // support.firePropertyChange(request.getType(), null, request.getArg());
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }*/
 }

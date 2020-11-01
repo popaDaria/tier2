@@ -24,6 +24,7 @@ public class UserController {
     //crud-retrieve
     @GetMapping("/get")
     public List<User> getAllUsers(){
+        //returns an empty array list if no users exist
         return service.getAllUsers();
     }
 
@@ -31,6 +32,7 @@ public class UserController {
     public User getUser(@RequestParam(name="idNr") final String id){
         try {
             int idNr = Integer.parseInt(id);
+            //TODO: Will return null if no user found
             return service.getUser(idNr);
         }catch (Exception e){
             System.out.println("!!! User not found or incorrect input");

@@ -60,8 +60,11 @@ public class SocketClientImpl implements SocketClient {
 
         try {
             Request response = request("GetAllUsers", null);
-            return (ArrayList<User>) response.getArg();
-        } catch (IOException | ClassNotFoundException e) {
+            if(response!=null) {
+                return (ArrayList<User>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
@@ -71,8 +74,11 @@ public class SocketClientImpl implements SocketClient {
     public User getUser(int id) {
         try {
             Request response = request("GetUser", id);
-            return (User) response.getArg();
-        } catch (IOException | ClassNotFoundException e) {
+            if(response!=null) {
+                return (User) response.getArg();
+            }else
+                return null;
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
@@ -82,17 +88,16 @@ public class SocketClientImpl implements SocketClient {
     public void addUser(User user) {
         try {
             Request response = request("AddUser", user);
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
     public void deleteUser(int id) {
         try {
             Request response = request("DeleteUser", id);
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -101,7 +106,7 @@ public class SocketClientImpl implements SocketClient {
     public void editUser(User user) {
         try {
             Request response = request("EditUser", user);
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -110,9 +115,10 @@ public class SocketClientImpl implements SocketClient {
         receivedMessage=request;
     }
 
-    private Request request(String type,Object arg) throws IOException, ClassNotFoundException {
+    private synchronized Request request(String type,Object arg) throws IOException{
         outToServer.writeObject(new Request(type, arg));
-        return (Request) inFromServer.readObject();
+        //return (Request) inFromServer.readObject();
+        return receivedMessage;
     }
 
     /*private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {

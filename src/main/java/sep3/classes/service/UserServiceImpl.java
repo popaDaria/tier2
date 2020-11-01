@@ -18,9 +18,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ArrayList<User> getAllUsers() {
-        return socketClient.getAllUsers();
-    }
+    public ArrayList<User> getAllUsers() { return socketClient.getAllUsers(); }
 
     @Override
     public User getUser(int id) {

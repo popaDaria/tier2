@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import sep3.classes.service.UserService;
 import sep3.classes.Model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,10 +23,15 @@ public class UserController {
     }
 
     //crud-retrieve
-    @GetMapping("/get")
+    @GetMapping("/all")
     public List<User> getAllUsers(){
         //returns an empty array list if no users exist
-        return service.getAllUsers();
+        try {
+            return service.getAllUsers();
+        }catch (Exception e){
+            System.out.println("Exception...");
+            return new ArrayList<>();
+        }
     }
 
     @GetMapping
@@ -39,6 +45,41 @@ public class UserController {
             return null;
         }
     }
+
+    @GetMapping("/type")
+    public List<User> getAllUsersOfAType(@RequestParam(name="userType") final String userType){
+        try {
+            List<User> allUsers = service.getAllUsers();
+            List<User> toReturn = new ArrayList<>();
+            for (User user : allUsers) {
+                if (user.getUserType().equals(userType)) {
+                    toReturn.add(user);
+                }
+            }
+            return toReturn;
+        }catch (Exception e){
+            System.out.println("!!! User not found or incorrect input");
+            return new ArrayList<>();
+        }
+    }
+
+    @GetMapping("/unvalidated")
+    public List<User> getUnvalidatedUsers(){
+        try{
+            List<User> allUsers = service.getAllUsers();
+            List<User> toReturn = new ArrayList<>();
+            for (User user : allUsers) {
+                if (!user.isValidated()) {
+                    toReturn.add(user);
+                }
+            }
+            return toReturn;
+        }catch (Exception e){
+            System.out.println("!!! User not found or incorrect input");
+            return new ArrayList<>();
+        }
+    }
+
 
     //crud-update
     @PatchMapping

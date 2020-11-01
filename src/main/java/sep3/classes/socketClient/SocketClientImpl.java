@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 @Component
 public class SocketClientImpl implements SocketClient {
 
@@ -22,7 +24,6 @@ public class SocketClientImpl implements SocketClient {
 
    // private PropertyChangeSupport support;
     public SocketClientImpl() {
-
       //  support = new PropertyChangeSupport(this);
     }
 
@@ -62,6 +63,7 @@ public class SocketClientImpl implements SocketClient {
 
         try {
             Request response = request("GetAllUsers", null);
+            System.out.println(response.getType());
             if(response!=null) {
                 return (ArrayList<User>) response.getArg();
             }else
@@ -113,16 +115,24 @@ public class SocketClientImpl implements SocketClient {
         }
     }
 
-    public void setReceivedMessage(Request request){
+    public synchronized void setReceivedMessage(Request request){
         //sets received messages here
         receivedMessage=request;
     }
 
-    private synchronized Request request(String type,Object arg) throws IOException{
+    private synchronized Request getReceivedMessage() {
+        return receivedMessage;
+    }
+
+    private synchronized Request request(String type, Object arg) throws IOException{
         outToServer.writeObject(new Request(type, arg));
         //return (Request) inFromServer.readObject();
-        //returns the received message
-        return receivedMessage;
+        try {
+            wait(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return getReceivedMessage();
     }
 
     /*private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {

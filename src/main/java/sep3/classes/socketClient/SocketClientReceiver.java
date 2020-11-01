@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 public class SocketClientReceiver implements Runnable {
     private ObjectInputStream inputStream;
     private SocketClientImpl client;
+    //private Request receivedMessage;
 
     public SocketClientReceiver(SocketClientImpl client, ObjectInputStream inputStream){
         this.client=client;
@@ -22,6 +23,7 @@ public class SocketClientReceiver implements Runnable {
             try {
                 Request request = (Request) inputStream.readObject();
                 client.setReceivedMessage(request);
+                //receivedMessage=request;
             }catch (IOException | ClassNotFoundException e){
                 e.printStackTrace();
             }

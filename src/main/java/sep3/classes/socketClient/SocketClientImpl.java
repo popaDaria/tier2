@@ -38,6 +38,8 @@ public class SocketClientImpl implements SocketClient {
             Thread thread = new Thread(clientReceiver);
             thread.setDaemon(true);
             thread.start();
+
+            System.out.println("Client connected...");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,11 +47,11 @@ public class SocketClientImpl implements SocketClient {
 
     @Override
     public void disconnect(){
+        System.out.println("Terminating connection....");
         try {
             inFromServer.close();
             outToServer.close();
             socket.close();
-            System.out.println("Connection terminated....");
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -112,12 +114,14 @@ public class SocketClientImpl implements SocketClient {
     }
 
     public void setReceivedMessage(Request request){
+        //sets received messages here
         receivedMessage=request;
     }
 
     private synchronized Request request(String type,Object arg) throws IOException{
         outToServer.writeObject(new Request(type, arg));
         //return (Request) inFromServer.readObject();
+        //returns the received message
         return receivedMessage;
     }
 

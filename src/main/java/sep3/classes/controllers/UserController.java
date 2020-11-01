@@ -29,11 +29,11 @@ public class UserController {
     }
 
     @GetMapping
-    public User getUser(@RequestParam(name="idNr") final String id){
+    public User getUser(@RequestParam(name="idNr") final String idNr){
         try {
-            int idNr = Integer.parseInt(id);
+            int id = Integer.parseInt(idNr);
             //TODO: Will return null if no user found
-            return service.getUser(idNr);
+            return service.getUser(id);
         }catch (Exception e){
             System.out.println("!!! User not found or incorrect input");
             return null;

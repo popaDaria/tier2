@@ -128,7 +128,7 @@ public class SocketClientImpl implements SocketClient {
         outToServer.writeObject(new Request(type, arg));
         //return (Request) inFromServer.readObject();
         try {
-            wait(300);
+            wait(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

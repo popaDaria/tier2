@@ -24,6 +24,7 @@ public class SocketClientImpl implements SocketClient {
 
    // private PropertyChangeSupport support;
     public SocketClientImpl() {
+        startClient();
       //  support = new PropertyChangeSupport(this);
     }
 
@@ -34,13 +35,13 @@ public class SocketClientImpl implements SocketClient {
             outToServer = new ObjectOutputStream(socket.getOutputStream());
             inFromServer = new ObjectInputStream(socket.getInputStream());
             //new Thread(() -> listenToServer(outToServer, inFromServer)).start();
-
             SocketClientReceiver clientReceiver = new SocketClientReceiver(this,inFromServer);
             Thread thread = new Thread(clientReceiver);
             thread.setDaemon(true);
             thread.start();
 
             System.out.println("Client connected...");
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl(SocketClient socketClient) {
         this.socketClient = socketClient;
-        socketClient.startClient();
+        //socketClient.startClient();
     }
 
 

@@ -48,4 +48,17 @@ public class RatingController {
     public void updateRating(@RequestBody Rating rating){
         service.updateRating(rating);
     }
+
+    //crud-delete
+    @DeleteMapping
+    public void deleteRating(@RequestParam(name = "hospitalId")final String hospitalId, @RequestParam(name = "idNr") final String idNr){
+        try {
+            int hId= Integer.parseInt(hospitalId);
+            int id=Integer.parseInt(idNr);
+            service.deleteRating(hId,id);
+        }catch (Exception e){
+            System.out.println("Invalid input");
+        }
+    }
+
 }

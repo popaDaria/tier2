@@ -10,4 +10,5 @@ public interface RatingService {
     Rating getRating(int hospitalId, int idNr);
     ArrayList<Rating> getAllRatings();
     void updateRating(Rating rating);
+    void deleteRating(int hospitalId, int idNr);
 }

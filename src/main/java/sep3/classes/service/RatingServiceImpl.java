@@ -38,4 +38,9 @@ public class RatingServiceImpl implements RatingService{
     public void updateRating(Rating rating) {
         //socketClient.updateRating(rating);
     }
+
+    @Override
+    public void deleteRating(int hospitalId, int idNr) {
+        //socketClient.deleteRating(hospitalId,idNr);
+    }
 }

@@ -6,6 +6,9 @@ public class MedicalRecord {
     //TODO: maybe string buffer for now(parse the byte[] to this)
     private byte[] content;
 
+    public MedicalRecord() {
+    }
+
     public MedicalRecord(int patientId, byte[] content) {
         this.patientId = patientId;
         this.content = content;

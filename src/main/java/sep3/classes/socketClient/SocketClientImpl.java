@@ -1,8 +1,7 @@
 package sep3.classes.socketClient;
 
 import org.springframework.stereotype.Component;
-import sep3.classes.Model.Request;
-import sep3.classes.Model.User;
+import sep3.classes.Model.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -48,20 +47,204 @@ public class SocketClientImpl implements SocketClient {
     }
 
     @Override
-    public void disconnect(){
-        System.out.println("Terminating connection....");
+    public ArrayList<Hospital> getAllHospitals() {
         try {
-            inFromServer.close();
-            outToServer.close();
-            socket.close();
-        }catch (IOException e){
+            Request response = request("GetAllHospitals", null);
+            System.out.println(response.getType());
+            if(response!=null) {
+                return (ArrayList<Hospital>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Hospital getHospital(int id) {
+        try {
+            Request response = request("GetHospital", id);
+            if(response!=null) {
+                return (Hospital) response.getArg();
+            }else
+                return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void addHospital(Hospital hospital) {
+        try {
+            Request response = request("AddHospital", hospital);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public ArrayList<User> getAllUsers() {
+    public void deleteHospital(int id) {
+        try {
+            Request response = request("DeleteHospital", id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void editHospital(Hospital hospital) {
+        try {
+            Request response = request("EditHospital", hospital);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public MedicalRecord getMedicalRecord(int id) {
+        try {
+            Request response = request("GetRecord", id);
+            if(response!=null) {
+                return (MedicalRecord) response.getArg();
+            }else
+                return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void addMedicalRecord(MedicalRecord medicalRecord) {
+        try {
+            Request response = request("AddRecord", medicalRecord);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void editMedicalRecord(MedicalRecord medicalRecord) {
+        try {
+            Request response = request("EditRecord", medicalRecord);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ArrayList<Rating> getAllRatings() {
+        try {
+            Request response = request("GetAllRatings", null);
+            System.out.println(response.getType());
+            if(response!=null) {
+                return (ArrayList<Rating>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Rating> getRating(int id) {
+        try {
+            Request response = request("GetRating", id);
+            if(response!=null) {
+                return (ArrayList<Rating>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void addRating(Rating rating) {
+        try {
+            Request response = request("AddRating", rating);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void editRating(Rating rating) {
+        try {
+            Request response = request("EditRating", rating);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public double getAvgRating(int hospitalId) {
+        try {
+            Request response = request("GetAverageRating", hospitalId);
+            if(response!=null) {
+                return (double) response.getArg();
+            }else
+                return 0;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public ArrayList<Message> getAllMessages() {
+        try {
+            Request response = request("GetAllMessages", null);
+            System.out.println(response.getType());
+            if(response!=null) {
+                return (ArrayList<Message>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Message> getUserMessages(int userId) {
+        try {
+            Request response = request("GetUserMessages", userId);
+            if(response!=null) {
+                return (ArrayList<Message>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void addMessage(Message message) {
+        try {
+            Request response = request("AddMessage", message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteMessage(Message message) {
+        try {
+            Request response = request("DeleteMessage", message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public ArrayList<User> getAllUsers() {
         try {
             Request response = request("GetAllUsers", null);
             System.out.println(response.getType());
@@ -136,6 +319,18 @@ public class SocketClientImpl implements SocketClient {
         return getReceivedMessage();
     }
 
+
+    @Override
+    public void disconnect(){
+        System.out.println("Terminating connection....");
+        try {
+            inFromServer.close();
+            outToServer.close();
+            socket.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     /*private void listenToServer(ObjectOutputStream outToServer, ObjectInputStream inFromServer) {
         try {
             while (true) {

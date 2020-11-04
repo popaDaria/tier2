@@ -17,6 +17,9 @@ public class User implements Serializable {
     private String address;
     private boolean validated;
 
+    public User() {
+    }
+
     public User(int idNr, String password, String email, String userType, String firstname, String lastname,
                 String gender, Date birthday, String telNo, String address, boolean validated)
     {

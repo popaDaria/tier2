@@ -10,6 +10,9 @@ public class Message {
     private String messageType;
     private String text;
 
+    public Message() {
+    }
+
     public Message(int senderId, int receiverId, LocalDateTime timestamp, String messageType, String text) {
         this.senderId = senderId;
         this.receiverId = receiverId;

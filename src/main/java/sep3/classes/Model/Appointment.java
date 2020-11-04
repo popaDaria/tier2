@@ -10,6 +10,9 @@ public class Appointment {
     private Date appointmentTime;
     private Date appointmentDate;
 
+    public Appointment() {
+    }
+
     public Appointment(int patientId, int doctorId, Date appointmentTime, Date appointmentDate) {
         this.patientId = patientId;
         this.doctorId = doctorId;

@@ -10,6 +10,9 @@ public class AvailableDay {
     private Date endTime;
     private int appointmentNr;
 
+    public AvailableDay() {
+    }
+
     public AvailableDay(int doctorId, Date availableDate, Date startTime, Date endTime, int appointmentNr) {
         this.doctorId = doctorId;
         this.availableDate = availableDate;

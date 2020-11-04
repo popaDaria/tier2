@@ -12,6 +12,16 @@ public class MedicalRecordController {
     @Autowired
     MedicalRecordService service;
 
+    //crud-create
+    @PostMapping
+    public void addMedicalRecord(@RequestBody final MedicalRecord medicalRecord){
+        try {
+            service.addMedicalRecord(medicalRecord);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     //crud - retrieve
     @GetMapping("/{patientId}")
     @ResponseBody
@@ -22,6 +32,16 @@ public class MedicalRecordController {
         }catch (Exception e){
             System.out.println("Invalid input");
             return null;
+        }
+    }
+
+    //crud-update
+    @PatchMapping
+    public void editMedicalRecord(@RequestBody final MedicalRecord medicalRecord){
+        try {
+            service.editMedicalRecord(medicalRecord);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

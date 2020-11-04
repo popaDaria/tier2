@@ -7,8 +7,9 @@ import java.util.ArrayList;
 public interface RatingService {
 
     void addRating(Rating rating);
-    Rating getRating(int hospitalId, int idNr);
+    ArrayList<Rating> getRating(int idNr);
     ArrayList<Rating> getAllRatings();
     void updateRating(Rating rating);
-    void deleteRating(int hospitalId, int idNr);
+    //void deleteRating(int hospitalId, int idNr);
+    double getAvgRating(int hospitalId);
 }

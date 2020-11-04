@@ -6,6 +6,9 @@ public class HospitalDoctor {
     private int hospitalId;
     private String deptName;
 
+    public HospitalDoctor() {
+    }
+
     public HospitalDoctor(int doctorId, int hospitalId, String deptName) {
         this.doctorId = doctorId;
         this.hospitalId = hospitalId;

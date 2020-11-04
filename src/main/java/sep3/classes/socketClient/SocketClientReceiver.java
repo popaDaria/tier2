@@ -22,6 +22,7 @@ public class SocketClientReceiver implements Runnable {
         while (true){
             try {
                 Request request = (Request) inputStream.readObject();
+                System.out.println(request.getType());
                 client.setReceivedMessage(request);
                 //receivedMessage=request;
             }catch (IOException | ClassNotFoundException e){

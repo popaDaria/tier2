@@ -16,7 +16,16 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
     @Override
     public MedicalRecord getMedicalRecord(int patientId) {
-        //socketClient.getMedicalRecord(patientId);
-        return null;
+        return socketClient.getMedicalRecord(patientId);
+    }
+
+    @Override
+    public void editMedicalRecord(MedicalRecord medicalRecord) {
+        socketClient.editMedicalRecord(medicalRecord);
+    }
+
+    @Override
+    public void addMedicalRecord(MedicalRecord medicalRecord) {
+        socketClient.addMedicalRecord(medicalRecord);
     }
 }

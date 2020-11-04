@@ -19,28 +19,26 @@ public class RatingServiceImpl implements RatingService{
 
     @Override
     public void addRating(Rating rating) {
-        //socketClient.addRating(rating);
+        socketClient.addRating(rating);
     }
 
     @Override
-    public Rating getRating(int hospitalId, int idNr) {
-        return null;
-        //return socketClient.getRating(hospitalId,idNr);
+    public ArrayList<Rating> getRating(int idNr) {
+        return socketClient.getRating(idNr);
     }
 
     @Override
     public ArrayList<Rating> getAllRatings() {
-        return null;
-        //return socketClient.getAllRatings();
+        return socketClient.getAllRatings();
     }
 
     @Override
     public void updateRating(Rating rating) {
-        //socketClient.updateRating(rating);
+        socketClient.editRating(rating);
     }
 
     @Override
-    public void deleteRating(int hospitalId, int idNr) {
-        //socketClient.deleteRating(hospitalId,idNr);
+    public double getAvgRating(int hospitalId) {
+        return socketClient.getAvgRating(hospitalId);
     }
 }

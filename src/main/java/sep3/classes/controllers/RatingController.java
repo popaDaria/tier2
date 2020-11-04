@@ -36,7 +36,13 @@ public class RatingController {
         try {
             int hId= Integer.parseInt(hospitalId);
             int id=Integer.parseInt(idNr);
-            return service.getRating(hId,id);
+            ArrayList<Rating> ratings = service.getRating(id);
+            Rating rating=null;
+            for (Rating ra : ratings) {
+                if(ra.getHospitalId()==hId)
+                    rating=ra;
+            }
+            return rating;
         }catch (Exception e){
             System.out.println("Invalid input");
             return null;
@@ -49,16 +55,5 @@ public class RatingController {
         service.updateRating(rating);
     }
 
-    //crud-delete
-    @DeleteMapping
-    public void deleteRating(@RequestParam(name = "hospitalId")final String hospitalId, @RequestParam(name = "idNr") final String idNr){
-        try {
-            int hId= Integer.parseInt(hospitalId);
-            int id=Integer.parseInt(idNr);
-            service.deleteRating(hId,id);
-        }catch (Exception e){
-            System.out.println("Invalid input");
-        }
-    }
 
 }

@@ -18,28 +18,26 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public ArrayList<Hospital> getAllHospitals() {
-        //return socketClient.getAllhospitals();
-        return null;
+        return socketClient.getAllHospitals();
     }
 
     @Override
     public Hospital getHospital(int id) {
-        //return socketClient.getHospital(id);
-        return null;
+        return socketClient.getHospital(id);
     }
 
     @Override
     public void addHospital(Hospital hospital) {
-        //socketClient.addHospital(hospital);
+        socketClient.addHospital(hospital);
     }
 
     @Override
     public void deleteHospital(int id) {
-        //socketClient.deleteHospital(id);
+        socketClient.deleteHospital(id);
     }
 
     @Override
     public void editHospital(Hospital hospital) {
-        //socketClient.editHospital(hospital);
+        socketClient.editHospital(hospital);
     }
 }

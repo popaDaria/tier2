@@ -38,6 +38,7 @@ public class UserController {
     public User getUser(@RequestParam(name="idNr") final String idNr){
         try {
             int id = Integer.parseInt(idNr);
+            System.out.println("User with id "+id+" returning...");
             //TODO: Will return null if no user found
             return service.getUser(id);
         }catch (Exception e){

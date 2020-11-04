@@ -3,15 +3,15 @@ package sep3.classes.Model;
 public class MedicalRecord {
 
     private int patientId;
-    //maybe string buffer for now(can parse the byte[] to this)
-    private StringBuffer content;
+    //TODO: maybe string buffer for now(parse the byte[] to this)
+    private byte[] content;
 
-    public MedicalRecord(int patientId, StringBuffer content) {
+    public MedicalRecord(int patientId, byte[] content) {
         this.patientId = patientId;
         this.content = content;
     }
 
-    public MedicalRecord(StringBuffer content) {
+    public MedicalRecord(byte[] content) {
         this.content = content;
     }
 
@@ -23,11 +23,11 @@ public class MedicalRecord {
         this.patientId = patientId;
     }
 
-    public StringBuffer getContent() {
+    public byte[] getContent() {
         return content;
     }
 
-    public void setContent(StringBuffer content) {
+    public void setContent(byte[] content) {
         this.content = content;
     }
 

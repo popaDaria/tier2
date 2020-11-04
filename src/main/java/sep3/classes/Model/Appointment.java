@@ -7,20 +7,14 @@ public class Appointment {
 
     private int patientId;
     private int doctorId;
-    private Date apptDate;
-    private Date apptTime;
+    private Date appointmentTime;
+    private Date appointmentDate;
 
-    public Appointment(int patientId, int doctorId, Date apptDate, Date apptTime) {
+    public Appointment(int patientId, int doctorId, Date appointmentTime, Date appointmentDate) {
         this.patientId = patientId;
         this.doctorId = doctorId;
-        this.apptDate = apptDate;
-        this.apptTime = apptTime;
-    }
-
-    public Appointment(int doctorId, Date apptDate, Date apptTime) {
-        this.doctorId = doctorId;
-        this.apptDate = apptDate;
-        this.apptTime = apptTime;
+        this.appointmentTime = appointmentTime;
+        this.appointmentDate = appointmentDate;
     }
 
     public int getPatientId() {
@@ -39,29 +33,19 @@ public class Appointment {
         this.doctorId = doctorId;
     }
 
-    public Date getApptDate() {
-        return apptDate;
+    public Date getAppointmentTime() {
+        return appointmentTime;
     }
 
-    public void setApptDate(Date apptDate) {
-        this.apptDate = apptDate;
+    public void setAppointmentTime(Date appointmentTime) {
+        this.appointmentTime = appointmentTime;
     }
 
-    public Date getApptTime() {
-        return apptTime;
+    public Date getAppointmentDate() {
+        return appointmentDate;
     }
 
-    public void setApptTime(Date apptTime) {
-        this.apptTime = apptTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "patientId=" + patientId +
-                ", doctorId=" + doctorId +
-                ", apptDate=" + apptDate +
-                ", apptTime=" + apptTime +
-                '}';
+    public void setAppointmentDate(Date appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
 }

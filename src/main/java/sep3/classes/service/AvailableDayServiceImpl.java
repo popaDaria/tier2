@@ -19,21 +19,22 @@ public class AvailableDayServiceImpl implements AvailableDayService {
 
     @Override
     public void deleteAvailableDay(AvailableDay availableDay) {
-
+        //socketClient.deleteAvailableDay(availableDay);
     }
 
     @Override
     public void updateAvailableDay(AvailableDay availableDay) {
-
+        //socketClient.updateAvailableDay(availableDay);
     }
 
     @Override
     public List<AvailableDay> getAvailableDays(int doctorId) {
         return null;
+        //return socketClient.getAvailableDays(doctorId);
     }
 
     @Override
     public void addAvailableDay(AvailableDay availableDay) {
-
+        //socketClient.addAvailableDay(availableDay);
     }
 }

@@ -3,7 +3,6 @@ package sep3.classes.socketClient;
 import sep3.classes.Model.Request;
 
 import java.io.BufferedReader;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
@@ -28,7 +27,6 @@ public class SocketClientReceiver implements Runnable {
                 //receivedMessage=request;
             }catch (IOException | ClassNotFoundException e){
                 e.printStackTrace();
-                break;
             }
         }
     }

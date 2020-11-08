@@ -37,8 +37,10 @@ public class UserController {
     @GetMapping
     public User getUser(@RequestParam(name="idNr") final String idNr){
         try {
+            int id = Integer.parseInt(idNr);
+            System.out.println("User with id "+id+" returning...");
             //TODO: Will return null if no user found
-            return service.getUser(idNr);
+            return service.getUser(id);
         }catch (Exception e){
             System.out.println("!!! User not found or incorrect input");
             return null;
@@ -92,7 +94,8 @@ public class UserController {
     @ResponseBody
     public void deleteUser(@PathVariable("idNr") final String id){
         try {
-            service.deleteUser(id);
+            int i = Integer.parseInt(id);
+            service.deleteUser(i);
             System.out.println("===>>> User with idNr "+id+" has been deleted");
         }catch (Exception e){
             System.out.println("!!! User not found or incorrect input");

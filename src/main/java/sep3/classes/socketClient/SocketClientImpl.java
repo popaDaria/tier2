@@ -259,7 +259,7 @@ public class SocketClientImpl implements SocketClient {
     }
 
     @Override
-    public User getUser(String id) {
+    public User getUser(int id) {
         try {
             Request response = request("GetUser", id);
             if(response!=null) {
@@ -282,7 +282,7 @@ public class SocketClientImpl implements SocketClient {
     }
 
     @Override
-    public void deleteUser(String id) {
+    public void deleteUser(int id) {
         try {
             Request response = request("DeleteUser", id);
         } catch (IOException e) {

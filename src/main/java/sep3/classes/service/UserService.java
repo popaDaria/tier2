@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public interface UserService {
     ArrayList<User> getAllUsers();
-    User getUser(String id);
+    User getUser(int id);
     void addUser(User user);
-    void deleteUser(String id);
+    void deleteUser(int id);
     void editUser(User user);
 }

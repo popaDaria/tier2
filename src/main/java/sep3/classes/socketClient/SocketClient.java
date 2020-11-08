@@ -8,9 +8,9 @@ public interface SocketClient {
 
     //USERS
     ArrayList<User> getAllUsers();
-    User getUser(int id);
+    User getUser(String id);
     void addUser(User user);
-    void deleteUser(int id);
+    void deleteUser(String id);
     void editUser(User user);
     void startClient();
 

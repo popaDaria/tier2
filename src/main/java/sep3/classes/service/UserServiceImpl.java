@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     public ArrayList<User> getAllUsers() { return socketClient.getAllUsers(); }
 
     @Override
-    public User getUser(int id) {
+    public User getUser(String id) {
         return socketClient.getUser(id);
     }
 
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(String id) {
      socketClient.deleteUser(id);
     }
 

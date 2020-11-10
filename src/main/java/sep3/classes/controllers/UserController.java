@@ -16,7 +16,7 @@ public class UserController {
     UserService service;
 
     //crud-create
-    @PostMapping
+    @PutMapping
     public void addUser(@RequestBody final User user){
         service.addUser(user);
         System.out.println("===>>> User with idNr "+user.getIdNr()+" has been added");

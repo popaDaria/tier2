@@ -17,8 +17,8 @@ public class AppointmentServiceImpl implements AppointmentService{
     }
 
     @Override
-    public void deleteAppointment(int patientId, int doctorId) {
-        //socketClient.deleteAppointment(patientId,doctorId);
+    public void deleteAppointment(Appointment appointment) {
+        socketClient.deleteAppointment(appointment);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 
     @Override
     public void addAppointment(Appointment appointment) {
-        //socketClient.addAppointment(appointment);
+        socketClient.addAppointment(appointment);
     }
 
     @Override
@@ -39,7 +39,6 @@ public class AppointmentServiceImpl implements AppointmentService{
 
     @Override
     public List<Appointment> getAllAppointments() {
-        return null;
-        //return socketClient.getAllAppointments();
+        return socketClient.getAllAppointments();
     }
 }

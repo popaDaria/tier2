@@ -11,4 +11,5 @@ public interface HospitalService {
     void addHospital(Hospital hospital);
     void deleteHospital(int id);
     void editHospital(Hospital hospital);
+    ArrayList<String> getDepartmentsOfHospital(int hospitalId);
 }

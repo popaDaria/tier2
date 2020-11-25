@@ -20,6 +20,7 @@ public interface SocketClient {
     void addHospital(Hospital hospital);
     void deleteHospital(int id);
     void editHospital(Hospital hospital);
+    ArrayList<String> getDepartmentsOfHospital(int hospitalId);
 
     //MEDICAL RECORDS
     MedicalRecord getMedicalRecord(int id);
@@ -42,11 +43,22 @@ public interface SocketClient {
     void deleteMessage(Message message);
 
     //APPOINTMENTS
-    //public ArrayList<Appointment> getAllAppointments();
+    ArrayList<Appointment> getAllAppointments();
     //public User getAppointment(int doctorId);
-    //public void addAppointment(Appointment appointment);
-    //public void deleteAppointment(Appointment appointment);
+    void addAppointment(Appointment appointment);
+    void deleteAppointment(Appointment appointment);
     //public void editAppointment(Appointment appointment);
+
+    //AVAILABLE DAYS
+    ArrayList<AvailableDay> getAvailableDays(int doctorId);
+    void addAvailableDay(AvailableDay availableDay);
+    void deleteAvailableDay(AvailableDay availableDay);
+
+    //HOSPITAL-DOCTOR
+    ArrayList<HospitalDoctor> getHospitalDoctor(int doctorId);
+    void addHospitalDoctor(HospitalDoctor hospitalDoctor);
+    void deleteHospitalDoctor(HospitalDoctor hospitalDoctor);
+
 
     void disconnect();
 }

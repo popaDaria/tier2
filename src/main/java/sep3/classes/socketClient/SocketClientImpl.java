@@ -49,7 +49,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public ArrayList<Hospital> getAllHospitals() {
         try {
-            Request response = request("GetAllHospitals", null);
+            Request response = request("getAllHospitals", null);
             System.out.println(response.getType());
             if(response!=null) {
                 return (ArrayList<Hospital>) response.getArg();
@@ -64,7 +64,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public Hospital getHospital(int id) {
         try {
-            Request response = request("GetHospital", id);
+            Request response = request("getHospital", id);
             if(response!=null) {
                 return (Hospital) response.getArg();
             }else
@@ -78,7 +78,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void addHospital(Hospital hospital) {
         try {
-            Request response = request("AddHospital", hospital);
+            Request response = request("addHospital", hospital);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,9 +103,23 @@ public class SocketClientImpl implements SocketClient {
     }
 
     @Override
+    public ArrayList<String> getDepartmentsOfHospital(int hospitalId) {
+        try {
+            Request response = request("getDepartmentsOfHospital", hospitalId);
+            if(response!=null) {
+                return (ArrayList<String>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
     public MedicalRecord getMedicalRecord(int id) {
         try {
-            Request response = request("GetRecord", id);
+            Request response = request("getMedicalRecord", id);
             if(response!=null) {
                 return (MedicalRecord) response.getArg();
             }else
@@ -119,7 +133,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void addMedicalRecord(MedicalRecord medicalRecord) {
         try {
-            Request response = request("AddRecord", medicalRecord);
+            Request response = request("addMedicalRecord", medicalRecord);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -128,7 +142,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void editMedicalRecord(MedicalRecord medicalRecord) {
         try {
-            Request response = request("EditRecord", medicalRecord);
+            Request response = request("editMedicalRecord", medicalRecord);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,7 +166,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public ArrayList<Rating> getRating(int id) {
         try {
-            Request response = request("GetRating", id);
+            Request response = request("getRating", id);
             if(response!=null) {
                 return (ArrayList<Rating>) response.getArg();
             }else
@@ -166,7 +180,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void addRating(Rating rating) {
         try {
-            Request response = request("AddRating", rating);
+            Request response = request("addRating", rating);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -175,7 +189,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void editRating(Rating rating) {
         try {
-            Request response = request("EditRating", rating);
+            Request response = request("editRating", rating);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -184,7 +198,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public double getAvgRating(int hospitalId) {
         try {
-            Request response = request("GetAverageRating", hospitalId);
+            Request response = request("getAvgRating", hospitalId);
             if(response!=null) {
                 return (double) response.getArg();
             }else
@@ -198,7 +212,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public ArrayList<Message> getAllMessages() {
         try {
-            Request response = request("GetAllMessages", null);
+            Request response = request("getAllMessages", null);
             System.out.println(response.getType());
             if(response!=null) {
                 return (ArrayList<Message>) response.getArg();
@@ -207,13 +221,13 @@ public class SocketClientImpl implements SocketClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public ArrayList<Message> getUserMessages(int userId) {
         try {
-            Request response = request("GetUserMessages", userId);
+            Request response = request("getUserMessages", userId);
             if(response!=null) {
                 return (ArrayList<Message>) response.getArg();
             }else
@@ -227,7 +241,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void addMessage(Message message) {
         try {
-            Request response = request("AddMessage", message);
+            Request response = request("addMessage", message);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -236,7 +250,106 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void deleteMessage(Message message) {
         try {
-            Request response = request("DeleteMessage", message);
+            Request response = request("deleteMessage", message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ArrayList<Appointment> getAllAppointments() {
+        try {
+            Request response = request("getAllAppointments", null);
+            System.out.println(response.getType());
+            if(response!=null) {
+                return (ArrayList<Appointment>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        try {
+            Request response = request("addAppointment", appointment);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        try {
+            Request response = request("deleteAppointment", appointment);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ArrayList<AvailableDay> getAvailableDays(int doctorId) {
+        try {
+            Request response = request("getAvailableDays", doctorId);
+            System.out.println(response.getType());
+            if(response!=null) {
+                return (ArrayList<AvailableDay>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void addAvailableDay(AvailableDay availableDay) {
+        try {
+            Request response = request("addAvailableDay", availableDay);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteAvailableDay(AvailableDay availableDay) {
+        try {
+            Request response = request("deleteAvailableDay", availableDay);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public ArrayList<HospitalDoctor> getHospitalDoctor(int doctorId) {
+        try {
+            Request response = request("getHospitalDoctor", doctorId);
+            System.out.println(response.getType());
+            if(response!=null) {
+                return (ArrayList<HospitalDoctor>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void addHospitalDoctor(HospitalDoctor hospitalDoctor) {
+        try {
+            Request response = request("addHospitalDoctor", hospitalDoctor);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteHospitalDoctor(HospitalDoctor hospitalDoctor) {
+        try {
+            Request response = request("deleteHospitalDoctor", hospitalDoctor);
         } catch (IOException e) {
             e.printStackTrace();
         }

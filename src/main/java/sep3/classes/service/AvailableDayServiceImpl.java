@@ -19,7 +19,7 @@ public class AvailableDayServiceImpl implements AvailableDayService {
 
     @Override
     public void deleteAvailableDay(AvailableDay availableDay) {
-        //socketClient.deleteAvailableDay(availableDay);
+        socketClient.deleteAvailableDay(availableDay);
     }
 
     @Override
@@ -29,12 +29,11 @@ public class AvailableDayServiceImpl implements AvailableDayService {
 
     @Override
     public List<AvailableDay> getAvailableDays(int doctorId) {
-        return null;
-        //return socketClient.getAvailableDays(doctorId);
+        return socketClient.getAvailableDays(doctorId);
     }
 
     @Override
     public void addAvailableDay(AvailableDay availableDay) {
-        //socketClient.addAvailableDay(availableDay);
+        socketClient.addAvailableDay(availableDay);
     }
 }

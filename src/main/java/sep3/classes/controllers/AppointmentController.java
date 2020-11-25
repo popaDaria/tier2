@@ -58,7 +58,7 @@ public class AppointmentController {
         }
     }
 
-    @GetMapping
+    /*@GetMapping
     public Appointment getAppointment(@RequestParam(name = "patientId")final String patientId,
                                       @RequestParam(name = "doctorId")final String doctorId){
         try {
@@ -69,22 +69,19 @@ public class AppointmentController {
             System.out.println("Invalid input");
             return null;
         }
-    }
+    }*/
 
     //crud-update
-    @PatchMapping
+    /*@PatchMapping
     public void updateAppointment(@RequestBody final Appointment appointment){
         service.updateAppointment(appointment);
-    }
+    }*/
 
     //crud-delete
     @DeleteMapping
-    public void deleteAppointment(@RequestParam(name = "patientId")final String patientId,
-                                  @RequestParam(name = "doctorId")final String doctorId){
+    public void deleteAppointment(@RequestBody final Appointment appointment){
         try {
-            int pId = Integer.parseInt(patientId);
-            int dId = Integer.parseInt(doctorId);
-            service.deleteAppointment(pId,dId);
+            service.deleteAppointment(appointment);
         }catch (Exception e){
             System.out.println("Invalid input");
         }

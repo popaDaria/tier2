@@ -42,6 +42,17 @@ public class HospitalController {
         }
     }
 
+    @GetMapping("/departments")
+    public List<String> getDepartmentsOfHospital(@RequestParam(name = "id") final String id){
+        try {
+            int hosId = Integer.parseInt(id);
+            return service.getDepartmentsOfHospital(hosId);
+        }catch (Exception e){
+            System.out.println("Invalid input");
+            return new ArrayList<>();
+        }
+    }
+
     //crud-update
 
     @PatchMapping

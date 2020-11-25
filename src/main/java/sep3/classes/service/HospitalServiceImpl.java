@@ -40,4 +40,9 @@ public class HospitalServiceImpl implements HospitalService {
     public void editHospital(Hospital hospital) {
         socketClient.editHospital(hospital);
     }
+
+    @Override
+    public ArrayList<String> getDepartmentsOfHospital(int hospitalId) {
+        return socketClient.getDepartmentsOfHospital(hospitalId);
+    }
 }

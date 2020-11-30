@@ -3,7 +3,7 @@ package sep3.classes.Model;
 import java.time.LocalDateTime;
 
 public class Message {
-    private int messageId;
+
     private int senderId;
     private int receiverId;
     private LocalDateTime timestamp;
@@ -19,23 +19,6 @@ public class Message {
         this.timestamp = timestamp;
         this.messageType = messageType;
         this.text = text;
-    }
-
-    public Message(int messageId, int senderId, int receiverId, LocalDateTime timestamp, String messageType, String text) {
-        this.messageId = messageId;
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.timestamp = timestamp;
-        this.messageType = messageType;
-        this.text = text;
-    }
-
-    public int getMessageId() {
-        return messageId;
-    }
-
-    public void setMessageId(int messageId) {
-        this.messageId = messageId;
     }
 
     public int getSenderId() {

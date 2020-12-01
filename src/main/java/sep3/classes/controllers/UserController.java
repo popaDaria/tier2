@@ -23,6 +23,27 @@ public class UserController {
     }
 
     //crud-retrieve
+    @GetMapping("/validate")
+    public User validateUser(@RequestParam(name="idNr") final String idNr,
+                               @RequestParam(name = "password")final String password){
+        try {
+            int id = Integer.parseInt(idNr);
+            User user = service.getUser(id);
+            if(user!=null)
+            {
+                if(user.getPassword().equals(password))
+                    return user;
+                else
+                    return null;
+            }
+            else return null;
+        }catch (Exception e){
+            System.out.println("!!! User not found or incorrect input");
+            return null;
+        }
+    }
+
+
     @GetMapping("/all")
     public List<User> getAllUsers(){
         //returns an empty array list if no users exist

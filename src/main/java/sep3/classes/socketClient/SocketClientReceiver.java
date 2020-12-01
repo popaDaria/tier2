@@ -30,6 +30,8 @@ public class SocketClientReceiver implements Runnable {
                 //receivedMessage=request;
             }catch (ClassNotFoundException | IOException e){
                 e.printStackTrace();
+                client.disconnect();
+                break;
             }
         }
     }

@@ -18,7 +18,16 @@ public class HospitalController {
     //crud-create
     @PostMapping
     public void addHospital(@RequestBody Hospital hospital){
-        service.addHospital(hospital);
+        ArrayList<Hospital> all = service.getAllHospitals();
+        boolean exists = false;
+        for (Hospital hos:all) {
+            if(hos.getManagerId()==hospital.getManagerId()&&hos.getName().equals(hos.getName()))
+                exists=true;
+        }
+        if(!exists)
+            service.addHospital(hospital);
+        else
+            System.out.println("Hospital already added!");
     }
 
     //crud-retrieve

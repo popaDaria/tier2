@@ -76,7 +76,6 @@ public class UserController {
             }
             return toReturn;
         }catch (Exception e){
-            System.out.println("!!! User not found or incorrect input");
             return new ArrayList<>();
         }
     }

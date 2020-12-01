@@ -14,7 +14,6 @@ public class ClassesApplication {
         //SocketClient socketClient=new SocketClientImpl();
         //UserService dataModel=new UserServiceImpl(socketClient);
         SpringApplication.run(ClassesApplication.class, args);
-
         //System.out.println(dataModel.addUser(new User()));
         //System.out.println(dataModel.getAllUsers());
     }

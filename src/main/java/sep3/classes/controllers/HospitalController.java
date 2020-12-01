@@ -40,6 +40,36 @@ public class HospitalController {
         }
     }
 
+    @GetMapping("/validated")
+    public List<Hospital> getValidatedHospitals(){
+        try {
+            List<Hospital> allHospitals = service.getAllHospitals();
+            List<Hospital> valid = new ArrayList<>();
+            for (Hospital hos : allHospitals){
+                if(hos.getValidated())
+                    valid.add(hos);
+            }
+            return valid;
+        }catch (Exception e){
+            return new ArrayList<>();
+        }
+    }
+
+    @GetMapping("/invalid")
+    public List<Hospital> getUnvalidatedHospitals(){
+        try {
+            List<Hospital> allHospitals = service.getAllHospitals();
+            List<Hospital> valid = new ArrayList<>();
+            for (Hospital hos : allHospitals){
+                if(!hos.getValidated())
+                    valid.add(hos);
+            }
+            return valid;
+        }catch (Exception e){
+            return new ArrayList<>();
+        }
+    }
+
     @GetMapping
     public Hospital getHospital(@RequestParam(name = "id") final String id){
         try {

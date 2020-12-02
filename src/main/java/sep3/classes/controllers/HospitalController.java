@@ -40,6 +40,23 @@ public class HospitalController {
         }
     }
 
+    @GetMapping("/validate")
+    public String validateHospital(@RequestParam(name = "id") final String id){
+        try{
+            int hos= Integer.parseInt(id);
+            Hospital hospital = service.getHospital(hos);
+            if(hospital!=null) {
+                hospital.setValidated(true);
+                service.editHospital(hospital);
+                return "validated";
+            }
+            return "not found";
+        }catch (Exception e){
+            System.out.println("Invalid input");
+            return "not found";
+        }
+    }
+
     @GetMapping("/validated")
     public List<Hospital> getValidatedHospitals(){
         try {
@@ -97,20 +114,6 @@ public class HospitalController {
     @PatchMapping
     public void updateHospital(@RequestBody Hospital hospital){
         service.editHospital(hospital);
-    }
-
-    @PatchMapping("/validate")
-    public void validateHospital(@RequestParam(name = "id") final String id){
-        try{
-            int hos= Integer.parseInt(id);
-            Hospital hospital = service.getHospital(hos);
-            if(hospital!=null) {
-                hospital.setValidated(true);
-                service.editHospital(hospital);
-            }
-        }catch (Exception e){
-            System.out.println("Invalid input");
-        }
     }
 
     //crud-delete

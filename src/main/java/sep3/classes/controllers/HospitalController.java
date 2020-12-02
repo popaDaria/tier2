@@ -21,7 +21,7 @@ public class HospitalController {
         ArrayList<Hospital> all = service.getAllHospitals();
         boolean exists = false;
         for (Hospital hos:all) {
-            if(hos.getManagerId()==hospital.getManagerId()&&hos.getName().equals(hos.getName()))
+            if(hos.getManagerId()==hospital.getManagerId()&&hos.getName().equals(hospital.getName()))
                 exists=true;
         }
         if(!exists)
@@ -48,12 +48,30 @@ public class HospitalController {
             if(hospital!=null) {
                 hospital.setValidated(true);
                 service.editHospital(hospital);
+                System.out.println("Validated");
                 return "validated";
             }
+            System.out.println("not found");
             return "not found";
         }catch (Exception e){
             System.out.println("Invalid input");
             return "not found";
+        }
+    }
+
+    @GetMapping("/manager")
+    public List<Hospital> getValidatedHospitals(@RequestParam(name = "id") final String id){
+        try{
+            int i = Integer.parseInt(id);
+            List<Hospital> allHospitals = service.getAllHospitals();
+            List<Hospital> valid = new ArrayList<>();
+            for (Hospital hos : allHospitals){
+                if(hos.getValidated() && hos.getManagerId()==i)
+                    valid.add(hos);
+            }
+            return valid;
+        }catch (Exception e){
+            return new ArrayList<>();
         }
     }
 

@@ -20,8 +20,22 @@ public class HospitalDoctorController {
     //crud-create
     @PostMapping
     public void addHospitalDoctor(@RequestBody final HospitalDoctor hospitalDoctor){
-        service.addHospitalDoctor(hospitalDoctor);
-        System.out.println("Hospital Doctor added");
+        try {
+            ArrayList<HospitalDoctor> allForDoctor = service.getHospitalDoctor(hospitalDoctor.getDoctorId());
+            boolean exists = false;
+            for (HospitalDoctor hs:allForDoctor) {
+                if(hs.getHospitalId()==hospitalDoctor.getHospitalId())
+                    exists=true;
+            }
+            if(!exists) {
+                service.addHospitalDoctor(hospitalDoctor);
+                System.out.println("Hospital Doctor added");
+            }else{
+                System.out.println("Doctor already working in this hospital");
+            }
+        }catch (Exception e){
+            System.out.println("invalid input");
+        }
     }
 
     //crud-retrieve

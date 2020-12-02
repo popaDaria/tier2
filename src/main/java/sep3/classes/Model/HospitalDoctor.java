@@ -1,6 +1,8 @@
 package sep3.classes.Model;
 
-public class HospitalDoctor {
+import java.io.Serializable;
+
+public class HospitalDoctor implements Serializable {
 
     private int doctorId;
     private int hospitalId;

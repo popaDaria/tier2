@@ -2,8 +2,8 @@ package sep3.classes.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sep3.classes.service.UserService;
 import sep3.classes.Model.User;
+import sep3.classes.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,29 @@ public class UserController {
         service.addUser(user);
         System.out.println("===>>> User with idNr "+user.getIdNr()+" has been added");
     }
+
+
+    @PutMapping("/doctor")
+    public void addDoctor(@RequestBody final User user){
+        try {
+            ArrayList<User> all = service.getAllUsers();
+            boolean exists=false;
+            for (User us:all) {
+                if(us.getIdNr()==user.getIdNr())
+                    exists=true;
+            }
+            if(!exists) {
+                service.addUser(user);
+                System.out.println("===>>> Doctor with idNr " + user.getIdNr() + " has been added");
+            }else{
+                System.out.println("Doctor already added!");
+            }
+        }catch (Exception e){
+            System.out.println("Invalid input");
+        }
+
+    }
+
 
     //crud-retrieve
     @GetMapping("/validate")

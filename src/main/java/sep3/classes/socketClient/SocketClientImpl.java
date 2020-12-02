@@ -87,7 +87,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void deleteHospital(int id) {
         try {
-            Request response = request("DeleteHospital", id);
+            Request response = request("deleteHospital", id);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -96,7 +96,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public void editHospital(Hospital hospital) {
         try {
-            Request response = request("EditHospital", hospital);
+            Request response = request("editHospital", hospital);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -99,6 +99,20 @@ public class HospitalController {
         service.editHospital(hospital);
     }
 
+    @PatchMapping("/validate")
+    public void validateHospital(@RequestParam(name = "id") final String id){
+        try{
+            int hos= Integer.parseInt(id);
+            Hospital hospital = service.getHospital(hos);
+            if(hospital!=null) {
+                hospital.setValidated(true);
+                service.editHospital(hospital);
+            }
+        }catch (Exception e){
+            System.out.println("Invalid input");
+        }
+    }
+
     //crud-delete
     @DeleteMapping("/{id}")
     @ResponseBody

@@ -2,6 +2,7 @@ package sep3.classes.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sep3.classes.Model.Hospital;
 import sep3.classes.Model.User;
 import sep3.classes.service.UserService;
 
@@ -66,6 +67,24 @@ public class UserController {
         }
     }
 
+    @GetMapping("/manager")
+    public String validateManager(@RequestParam(name = "id") final String id){
+        try{
+            int i= Integer.parseInt(id);
+            User user = service.getUser(i);
+            if(user!=null) {
+                user.setValidated(true);
+                service.editUser(user);
+                System.out.println("Validated");
+                return "validated";
+            }
+            System.out.println("not found");
+            return "not found";
+        }catch (Exception e){
+            System.out.println("Invalid input");
+            return "not found";
+        }
+    }
 
     @GetMapping("/all")
     public List<User> getAllUsers(){

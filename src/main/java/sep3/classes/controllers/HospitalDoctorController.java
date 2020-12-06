@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sep3.classes.Model.Hospital;
 import sep3.classes.Model.HospitalDoctor;
+import sep3.classes.Model.User;
 import sep3.classes.service.HospitalDoctorService;
+import sep3.classes.service.UserService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ public class HospitalDoctorController {
 
     @Autowired
     HospitalDoctorService service;
+    @Autowired
+    UserService userService;
 
     //crud-create
     @PostMapping
@@ -44,6 +48,24 @@ public class HospitalDoctorController {
         try {
             int doctorId = Integer.parseInt(id);
             return service.getHospitalDoctor(doctorId);
+        }catch (Exception e){
+            System.out.println("Incorrect input or no doctor found");
+            return new ArrayList<>();
+        }
+    }
+
+    @GetMapping("/doctors")
+    public List<User> getDepartmentDoctors(@RequestParam(name = "hosId") final String id,
+                                           @RequestParam(name = "dept") final String dept){
+        try {
+            int hospitalId = Integer.parseInt(id);
+            ArrayList<Integer> docIds = service.getDoctorIds(hospitalId, dept);
+            ArrayList<User> doctors = new ArrayList<>();
+            for (int i: docIds) {
+                User user = userService.getUser(i);
+                doctors.add(user);
+            }
+            return doctors;
         }catch (Exception e){
             System.out.println("Incorrect input or no doctor found");
             return new ArrayList<>();

@@ -30,4 +30,10 @@ public class HospitalDoctorServiceImpl implements HospitalDoctorService{
     public void deleteHospitalDoctor(HospitalDoctor hospitalDoctor) {
         socketClient.deleteHospitalDoctor(hospitalDoctor);
     }
+
+    @Override
+    public ArrayList<Integer> getDoctorIds(int hospitalId, String dept) {
+        return socketClient.getDoctorsByDepartment(hospitalId+" "+dept);
+        //return new ArrayList<>();
+    }
 }

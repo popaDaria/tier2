@@ -30,8 +30,10 @@ public class AppointmentController {
             List<Appointment> appointments = service.getAllAppointments();
             List<Appointment> patientsAppt = new ArrayList<>();
             for (Appointment appt:appointments) {
-                if(appt.getPatientId()==id)
+                if(appt.getPatientId()==id) {
                     patientsAppt.add(appt);
+                    //System.out.println(appt.getAppointmentTime().toString());
+                }
             }
             return patientsAppt;
         }catch (Exception e){

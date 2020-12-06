@@ -334,7 +334,7 @@ public class SocketClientImpl implements SocketClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -353,6 +353,21 @@ public class SocketClientImpl implements SocketClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ArrayList<Integer> getDoctorsByDepartment(String s) {
+        try {
+            Request response = request("getAllDoctorForDept", s);
+            System.out.println(response.getType());
+            if(response!=null) {
+                return (ArrayList<Integer>) response.getArg();
+            }else
+                return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 
 

@@ -8,4 +8,6 @@ public interface HospitalDoctorService {
     ArrayList<HospitalDoctor> getHospitalDoctor(int doctorId);
     void addHospitalDoctor(HospitalDoctor hospitalDoctor);
     void deleteHospitalDoctor(HospitalDoctor hospitalDoctor);
+
+    ArrayList<Integer> getDoctorIds(int hospitalId, String dept);
 }

@@ -58,7 +58,9 @@ public interface SocketClient {
     ArrayList<HospitalDoctor> getHospitalDoctor(int doctorId);
     void addHospitalDoctor(HospitalDoctor hospitalDoctor);
     void deleteHospitalDoctor(HospitalDoctor hospitalDoctor);
-
+    ArrayList<Integer> getDoctorsByDepartment(String s);
 
     void disconnect();
+
+
 }

@@ -1,7 +1,6 @@
 package sep3.classes.Model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class AvailableDay implements Serializable {
@@ -16,13 +15,6 @@ public class AvailableDay implements Serializable {
 
     public AvailableDay(int doctorId, Date availableDate, Date startTime, Date endTime, int appointmentNr) {
         this.doctorId = doctorId;
-        this.availableDate = availableDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.appointmentNr = appointmentNr;
-    }
-
-    public AvailableDay(Date availableDate, Date startTime, Date endTime, int appointmentNr) {
         this.availableDate = availableDate;
         this.startTime = startTime;
         this.endTime = endTime;

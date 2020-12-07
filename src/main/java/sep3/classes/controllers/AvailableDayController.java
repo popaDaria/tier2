@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import sep3.classes.Model.AvailableDay;
 import sep3.classes.service.AvailableDayService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,8 @@ public class AvailableDayController {
     //crud-update
     @PatchMapping
     public void updateAvailableDay(@RequestBody final AvailableDay availableDay){
-        service.updateAvailableDay(availableDay);
+        service.deleteAvailableDay(availableDay);
+        service.addAvailableDay(availableDay);
     }
 
     //crud-delete

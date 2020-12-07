@@ -46,12 +46,14 @@ public class AppointmentController {
     @ResponseBody
     public List<Appointment> getAllForDoctor(@PathVariable("doctorId") final String doctorId){
         try {
+            //System.out.println("Get all for doctor");
             int id = Integer.parseInt(doctorId);
             List<Appointment> appointments = service.getAllAppointments();
             List<Appointment> doctorsAppt = new ArrayList<>();
             for (Appointment appt:appointments) {
-                if(appt.getDoctorId()==id)
+                if(appt.getDoctorId()==id) {
                     doctorsAppt.add(appt);
+                }
             }
             return doctorsAppt;
         }catch (Exception e){

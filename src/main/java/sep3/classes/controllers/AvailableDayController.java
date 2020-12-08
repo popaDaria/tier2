@@ -43,8 +43,9 @@ public class AvailableDayController {
     }
 
     //crud-delete
-    @DeleteMapping
+    @PostMapping("/delete")
     public void deleteAvailableDay(@RequestBody final AvailableDay availableDay){
+        System.out.println("deleting available day...");
         service.deleteAvailableDay(availableDay);
     }
 }

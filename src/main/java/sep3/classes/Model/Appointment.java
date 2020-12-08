@@ -9,16 +9,18 @@ public class Appointment implements Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String summary;
+    private int id;
 
     public Appointment() {
     }
 
-    public Appointment(int patientId, int doctorId, LocalDateTime startTime, LocalDateTime endTime, String summary) {
+    public Appointment(int patientId, int doctorId, LocalDateTime startTime, LocalDateTime endTime, String summary, int id) {
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.summary = summary;
+        this.id=id;
     }
 
     public int getPatientId() {
@@ -59,5 +61,13 @@ public class Appointment implements Serializable {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

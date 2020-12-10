@@ -6,6 +6,7 @@ import sep3.classes.Model.Message;
 import sep3.classes.service.MessageService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/messages")
@@ -38,6 +39,32 @@ public class MessageController {
                 return service.getUserMessages(i);
             }catch (Exception e){
                 System.out.println("Invalid input");
+                return new ArrayList<>();
+            }
+        }
+
+        @GetMapping("/sentTo")
+        public ArrayList<Message> getMessagesFromTo(@RequestParam(name = "senderId") final String senderId,
+                                                    @RequestParam(name = "receiverId") final String receiverId){
+            try{
+                int rId = Integer.parseInt(receiverId);
+                int sId = Integer.parseInt(senderId);
+                ArrayList<Message> msgs = service.getUserMessages(rId);
+                ArrayList<Message> result = new ArrayList<>();
+                for (Message message:msgs) {
+                    if(message.getSenderId()==sId){
+                        result.add(message);
+                    }
+                }
+                msgs = service.getUserMessages(sId);
+                for (Message message:msgs) {
+                    if(message.getSenderId()==rId){
+                        result.add(message);
+                    }
+                }
+                return result;
+
+            }catch (Exception e){
                 return new ArrayList<>();
             }
         }

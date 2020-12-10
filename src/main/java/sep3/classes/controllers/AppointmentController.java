@@ -76,10 +76,19 @@ public class AppointmentController {
     }*/
 
     //crud-update
-    /*@PatchMapping
+    @PatchMapping
     public void updateAppointment(@RequestBody final Appointment appointment){
-        service.updateAppointment(appointment);
-    }*/
+        List<Appointment> appointments = service.getAllAppointments();
+        Appointment appointment2 = null;
+        for (Appointment appt:appointments) {
+            if(appt.getId()==appointment.getId())
+                appointment2=appt;
+        }
+        if(appointment2!=null) {
+            service.deleteAppointment(appointment2);
+            service.addAppointment(appointment);
+        }
+    }
 
     //crud-delete
     @PostMapping("/delete")

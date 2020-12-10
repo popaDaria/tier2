@@ -97,6 +97,19 @@ public class UserController {
         }
     }
 
+    @GetMapping("/name")
+    public String getFullName(@RequestParam(name="idNr") final String idNr){
+        try{
+            int id = Integer.parseInt(idNr);
+            User user = service.getUser(id);
+            String name = user.getFirstname()+" "+user.getLastname();
+            return name;
+        }catch (Exception e){
+            System.out.println("user not found!");
+            return "";
+        }
+    }
+
     @GetMapping
     public User getUser(@RequestParam(name="idNr") final String idNr){
         try {

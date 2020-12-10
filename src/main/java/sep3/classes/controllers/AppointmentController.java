@@ -82,7 +82,7 @@ public class AppointmentController {
     }*/
 
     //crud-delete
-    @DeleteMapping
+    @PostMapping("/delete")
     public void deleteAppointment(@RequestBody final Appointment appointment){
         try {
             service.deleteAppointment(appointment);

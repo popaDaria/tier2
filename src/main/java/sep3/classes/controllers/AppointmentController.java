@@ -85,6 +85,7 @@ public class AppointmentController {
                 appointment2=appt;
         }
         if(appointment2!=null) {
+            System.out.println("updating...");
             service.deleteAppointment(appointment2);
             service.addAppointment(appointment);
         }

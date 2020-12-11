@@ -8,7 +8,7 @@ public interface RatingService {
 
     void addRating(Rating rating);
     ArrayList<Rating> getRating(int idNr);
-    ArrayList<Rating> getAllRatings();
+    //ArrayList<Rating> getAllRatings();
     void updateRating(Rating rating);
     //void deleteRating(int hospitalId, int idNr);
     double getAvgRating(int hospitalId);

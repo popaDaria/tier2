@@ -27,10 +27,10 @@ public class RatingServiceImpl implements RatingService{
         return socketClient.getRating(idNr);
     }
 
-    @Override
+    /*@Override
     public ArrayList<Rating> getAllRatings() {
         return socketClient.getAllRatings();
-    }
+    }*/
 
     @Override
     public void updateRating(Rating rating) {

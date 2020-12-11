@@ -7,6 +7,7 @@ import sep3.classes.Model.User;
 import sep3.classes.service.UserService;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 @RestController
@@ -124,19 +125,21 @@ public class UserController {
     }
 
     @GetMapping("/type")
-    public List<User> getAllUsersOfAType(@RequestParam(name="userType") final String userType){
+    public Hashtable<Integer, String> getAllUsersOfAType(@RequestParam(name="userType") final String userType){
         try {
+            Hashtable<Integer, String> table = new Hashtable<>();
             List<User> allUsers = service.getAllUsers();
-            List<User> toReturn = new ArrayList<>();
+            //List<User> toReturn = new ArrayList<>();
             for (User user : allUsers) {
                 if (user.getUserType().equals(userType)) {
-                    toReturn.add(user);
+                    //toReturn.add(user);
+                    table.put(user.getIdNr(), user.getFirstname()+" "+user.getLastname());
                 }
             }
-            return toReturn;
+            return table;
         }catch (Exception e){
             System.out.println("!!! User not found or incorrect input");
-            return new ArrayList<>();
+            return new Hashtable<>();
         }
     }
 

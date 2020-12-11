@@ -151,7 +151,7 @@ public class SocketClientImpl implements SocketClient {
     @Override
     public ArrayList<Rating> getAllRatings() {
         try {
-            Request response = request("GetAllRatings", null);
+            Request response = request("getAllRatings", null);
             System.out.println(response.getType());
             if(response!=null) {
                 return (ArrayList<Rating>) response.getArg();

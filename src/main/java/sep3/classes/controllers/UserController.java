@@ -128,11 +128,12 @@ public class UserController {
     public List<String> getAllUsersOfAType(@RequestParam(name="userType") final String userType){
         try {
             //Hashtable<Integer, String> table = new Hashtable<>();
+            System.out.println("REQUESTED USER TYPE:"+userType);
             List<User> allUsers = service.getAllUsers();
             List<String> toReturn = new ArrayList<>();
             for (User user : allUsers) {
                 if (user.getUserType().equals(userType)) {
-                    toReturn.add(user.getIdNr()+" "+user.getFirstname()+" "+user.getLastname());
+                    toReturn.add(user.getIdNr()+"-"+user.getFirstname()+" "+user.getLastname());
                     //table.put(user.getIdNr(), user.getFirstname()+" "+user.getLastname());
                 }
             }

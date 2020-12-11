@@ -16,7 +16,12 @@ public class MedicalRecordController {
     @PostMapping
     public void addMedicalRecord(@RequestBody final MedicalRecord medicalRecord){
         try {
-            service.addMedicalRecord(medicalRecord);
+            MedicalRecord medicalRecord1 = null;
+            medicalRecord1 = service.getMedicalRecord(medicalRecord.getPatientId());
+            if(medicalRecord1==null)
+                 service.addMedicalRecord(medicalRecord);
+            else
+                service.editMedicalRecord(medicalRecord);
         }catch (Exception e){
             e.printStackTrace();
         }

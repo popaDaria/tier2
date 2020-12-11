@@ -125,21 +125,21 @@ public class UserController {
     }
 
     @GetMapping("/type")
-    public Hashtable<Integer, String> getAllUsersOfAType(@RequestParam(name="userType") final String userType){
+    public List<String> getAllUsersOfAType(@RequestParam(name="userType") final String userType){
         try {
-            Hashtable<Integer, String> table = new Hashtable<>();
+            //Hashtable<Integer, String> table = new Hashtable<>();
             List<User> allUsers = service.getAllUsers();
-            //List<User> toReturn = new ArrayList<>();
+            List<String> toReturn = new ArrayList<>();
             for (User user : allUsers) {
                 if (user.getUserType().equals(userType)) {
-                    //toReturn.add(user);
-                    table.put(user.getIdNr(), user.getFirstname()+" "+user.getLastname());
+                    toReturn.add(user.getIdNr()+" "+user.getFirstname()+" "+user.getLastname());
+                    //table.put(user.getIdNr(), user.getFirstname()+" "+user.getLastname());
                 }
             }
-            return table;
+            return toReturn;
         }catch (Exception e){
             System.out.println("!!! User not found or incorrect input");
-            return new Hashtable<>();
+            return new ArrayList<>();
         }
     }
 

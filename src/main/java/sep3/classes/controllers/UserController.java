@@ -19,9 +19,26 @@ public class UserController {
 
     //crud-create
     @PutMapping
-    public void addUser(@RequestBody final User user){
-        service.addUser(user);
-        System.out.println("===>>> User with idNr "+user.getIdNr()+" has been added");
+    public String addUser(@RequestBody final User user){
+        try {
+            ArrayList<User> all = service.getAllUsers();
+            boolean found=false;
+            for (User us:all) {
+                if(us.getIdNr()==user.getIdNr())
+                    found=true;
+            }
+            if(!found) {
+                service.addUser(user);
+                System.out.println("===>>> User with idNr " + user.getIdNr() + " has been added");
+                return "OK";
+            }else {
+                System.out.println("User with same idNr already added");
+                return "NOT";
+            }
+        }catch (Exception e){
+            System.out.println("User with same idNr already added or invalid input");
+            return "NOT";
+        }
     }
 
 

@@ -43,6 +43,23 @@ public class MessageController {
             }
         }
 
+        @GetMapping("/notifications")
+        public ArrayList<Message> getNotifs(){
+            try{
+                ArrayList<Message> all = service.getAllMessages();
+                ArrayList<Message> notifs = new ArrayList<>();
+                for (Message msg: all) {
+                    if(msg.getMessageType().equals("notification")){
+                        notifs.add(msg);
+                    }
+                }
+                return notifs;
+            }catch (Exception e){
+                System.out.println("No notifs");
+                return new ArrayList<>();
+            }
+        }
+
         @GetMapping("/sentTo")
         public ArrayList<Message> getMessagesFromTo(@RequestParam(name = "senderId") final String senderId,
                                                     @RequestParam(name = "receiverId") final String receiverId){

@@ -49,19 +49,21 @@ public class MessageController {
             try{
                 int rId = Integer.parseInt(receiverId);
                 int sId = Integer.parseInt(senderId);
-                ArrayList<Message> msgs = service.getUserMessages(rId);
+                //ArrayList<Message> msgs = service.getUserMessages(rId);
                 ArrayList<Message> result = new ArrayList<>();
+                ArrayList<Message> msgs = service.getAllMessages();
                 for (Message message:msgs) {
-                    if(message.getSenderId()==sId){
+                    if((message.getSenderId()==sId&&message.getReceiverId()==rId)
+                            ||(message.getSenderId()==rId&&message.getReceiverId()==sId)){
                         result.add(message);
                     }
                 }
-                msgs = service.getUserMessages(sId);
+                /*msgs = service.getUserMessages(sId);
                 for (Message message:msgs) {
                     if(message.getSenderId()==rId){
                         result.add(message);
                     }
-                }
+                }*/
                 return result;
 
             }catch (Exception e){
